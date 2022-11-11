@@ -53,8 +53,27 @@ def bsearch(value, lowerBound, upperBound, lst):
 
 
 # -------------- Mergesort ---------------
-def mergesort():
-    return []
+def mergesort_bsort(lst):
+    if len(lst) > 1:
+ 
+         # Finding the mid of the array
+        mid = len(lst)//2
+ 
+        # Dividing the array elements
+        L = lst[:mid]
+ 
+        # into 2 halves
+        R = lst[mid:]
+
+        #sort 1st half
+        mergesort_bsort(L)
+
+        #sort 2nd half
+        mergesort_bsort(R)
+        
+        lst = bsort(L) + bsort(R)
+
+    return [lst]
 
 
 # --------------- Run/Test ---------------
@@ -63,6 +82,7 @@ a = [randrange(10) for i in range(10)]
 # a = [0, 7, 3, 1, 3, 8, 1, 0, 8, 0]
 
 print("\nList:          ", a)
-print("* Bubble sort: ", bubble(a))
-print("* Linear sort: ", asort(a))
-print("* Binary sort: ", bsort(a))
+#print("* Bubble sort: ", bubble(a))
+#print("* Linear sort: ", asort(a))
+#print("* Binary sort: ", bsort(a))
+print("* Merge sort (bsort): ", mergesort_bsort(a))
