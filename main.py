@@ -64,18 +64,23 @@ def mergeKlists(lst):
         
         for i in range(0, len(array)): #o(n)
             bsort(array[i])
-        print(array)
+
         
         a = [0 for i in range(len(array))] #o(n)
         
+        print(array)
+
         amount = len(array)
         interval = 1
         newarray = []
         while interval < amount:
             for i in range(0, amount - interval, interval*2):
-                newarray[i] = merge2lists(array[i], array[i + interval])
+                if not array[i+1]:
+                    newarray.append(array[i])
+                else:
+                    newarray.append(merge2lists(array[i], array[i + interval]))
             interval *= 2
-        print(newarra)
+        return newarray
 
 def merge2lists(L, R):
     newarray = []
@@ -107,7 +112,7 @@ def merge2lists(L, R):
 
 # --------------- Run/Test ---------------
 # test = [0, 1, 2, 4, 3, 5, 6]
-a = [randrange(10) for i in range(10)]
+a = [randrange(10) for i in range(20)]
 # a = [0, 7, 3, 1, 3, 8, 1, 0, 8, 0]
 
 print("\nList:          ", a)
