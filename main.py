@@ -54,7 +54,7 @@ def bsearch(value, lowerBound, upperBound, lst):
 
 
 # -------------- Mergesort ---------------
-def mergesort_bsort(lst):
+def mergeKlists(lst):
     k = 4                       #Max lenght of elements in sublists
     if len(lst) > 1:
         array = [
@@ -67,21 +67,19 @@ def mergesort_bsort(lst):
         print(array)
         
         a = [0 for i in range(len(array))] #o(n)
-        print (a)
-        print(len(array))
+        
+        amount = len(array)
+        interval = 1
+        newarray = []
+        while interval < amount:
+            for i in range(0, amount - interval, interval*2):
+                newarray[i] = merge2lists(array[i], array[i + interval])
+            interval *= 2
 
-        for i in math.floor(len(array)/2):  #n/2
 
-            L = array[i]
-            R = array[i+1] 
-
-            #gör merge 
-                #i =+ 2
-                #L = array[0]
-                #R = array[1]
-                #append. new array?
-
-            
+def merge2lists(L, R):
+    while L and R:
+                if L[]
 
 
 
