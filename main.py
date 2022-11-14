@@ -75,12 +75,34 @@ def mergeKlists(lst):
             for i in range(0, amount - interval, interval*2):
                 newarray[i] = merge2lists(array[i], array[i + interval])
             interval *= 2
-
+        print(newarra)
 
 def merge2lists(L, R):
-    while L and R:
-                if L[]
+    newarray = []
+    i = j = k = 0
+    while i < len(L) and j < len(R):
+        if L[i] <= R[j]:
+            newarray.append(L[i])
+            i += 1
+        else:
+            newarray.append(R[j])
+            j += 1
+        k += 1
+    
+    while i < len(L):
+        newarray.append(L[i])
+        i += 1
+        k += 1
+ 
+    while j < len(R):
+        newarray.append(R[j])
+        j += 1
+        k += 1
+    
+    return newarray
 
+
+    
 
 
 # --------------- Run/Test ---------------
@@ -93,4 +115,4 @@ print("\nList:          ", a)
 #print("* Linear sort: ", asort(a))
 #print("* Binary sort: ", bsort(a))
 #print("* Merge sort (bsort): ", mergesort_bsort(a))
-print(mergesort_bsort(a))
+print(mergeKlists(a))
