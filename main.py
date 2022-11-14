@@ -1,4 +1,5 @@
 import math
+import array
 from random import randrange
 
 
@@ -54,26 +55,27 @@ def bsearch(value, lowerBound, upperBound, lst):
 
 # -------------- Mergesort ---------------
 def mergesort_bsort(lst):
+    k = 4                       #Max lenght of elements in sublists
     if len(lst) > 1:
- 
-         # Finding the mid of the array
-        mid = len(lst)//2
- 
-        # Dividing the array elements
-        L = lst[:mid]
- 
-        # into 2 halves
-        R = lst[mid:]
-
-        #sort 1st half
-        mergesort_bsort(L)
-
-        #sort 2nd half
-        mergesort_bsort(R)
+        array = [
+                lst[i * 4:(i + 1) * k] 
+                for i in range((len(lst) + k - 1) // k )
+                ]
         
-        lst = bsort(L) + bsort(R)
+        for i in range(0, len(array)): 
+            bsort(array[i])
+        print(array)
+        
+        i = j = k = 0
+        
+        print(len(array))
+        
+        #while i < range(array):
+        ##    i =+ 1
+        #    print (array[i])
 
-    return [lst]
+            
+
 
 
 # --------------- Run/Test ---------------
@@ -85,4 +87,5 @@ print("\nList:          ", a)
 #print("* Bubble sort: ", bubble(a))
 #print("* Linear sort: ", asort(a))
 #print("* Binary sort: ", bsort(a))
-print("* Merge sort (bsort): ", mergesort_bsort(a))
+#print("* Merge sort (bsort): ", mergesort_bsort(a))
+print(mergesort_bsort(a))
