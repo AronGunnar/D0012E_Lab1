@@ -1,6 +1,7 @@
 from random import randrange
+import time
 
-
+start = time.time()
 # -------------- Bubble sort --------------
 def bubble(lst):
     if len(lst) > 1:
@@ -102,6 +103,8 @@ def merge(L, R):
 
 
 # --------------- Run/Test ---------------
+end = time.time()
+final_time = start - end
 a = [randrange(10) for i in range(20)]
 # a = [0, 7, 3, 1, 3, 8, 1, 0, 8, 0]
 
@@ -111,3 +114,5 @@ print("\nList:          ", a)
 # print("* Binary sort: ", bsort(a))
 # print("* Merge sort (bsort): ", mergesort_bsort(a))
 print(mergesort(a))
+
+print("execution time :", final_time)
