@@ -75,11 +75,12 @@ def mergeKlists(lst):
         newarray = []
         while interval < amount:
             for i in range(0, amount - interval, interval*2):
-                if not array[i+1]:
+                if interval+1 >= len(array):
                     newarray.append(array[i])
+                    continue
                 else:
                     newarray.append(merge2lists(array[i], array[i + interval]))
-            interval *= 2
+                interval *= 2
         return newarray
 
 def merge2lists(L, R):
