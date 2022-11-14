@@ -62,17 +62,24 @@ def mergesort_bsort(lst):
                 for i in range((len(lst) + k - 1) // k )
                 ]
         
-        for i in range(0, len(array)): 
+        for i in range(0, len(array)): #o(n)
             bsort(array[i])
         print(array)
         
-        i = j = k = 0
-        
+        a = [0 for i in range(len(array))] #o(n)
+        print (a)
         print(len(array))
-        
-        #while i < range(array):
-        ##    i =+ 1
-        #    print (array[i])
+
+        for i in math.floor(len(array)/2):  #n/2
+
+            L = array[i]
+            R = array[i+1] 
+
+            #gör merge 
+                #i =+ 2
+                #L = array[0]
+                #R = array[1]
+                #append. new array?
 
             
 
