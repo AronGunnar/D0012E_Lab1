@@ -82,7 +82,7 @@ def merge2lists(L, R):
     i = j = k = 0
     while i < len(L) and j < len(R):
         if L[i] <= R[j]:
-            newarray.append(L[i])
+            newarray.append(L[i])       #append placeholder swap to k to use constant o(1)
             i += 1
         else:
             newarray.append(R[j])
