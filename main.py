@@ -2,8 +2,9 @@ from random import randrange
 import cProfile
 import time
 
+
 # -------------- Bubble sort --------------
-#def bubble(lst):
+# def bubble(lst):
 #    if len(lst) > 1:
 #        for _ in range(len(lst)):
 #            for i, val in enumerate(lst):
@@ -62,26 +63,27 @@ def mergesort(lst):
         ]
 
         for i in range(0, len(sublsts)):  # o(n)
-            #asort(sublsts[i])   # Uncomment to use linear sort
+            # asort(sublsts[i])   # Uncomment to use linear sort
             bsort(sublsts[i])
+
         temp = []
-        while len(sublsts) > 1:                                     #ciel(n/2k) + 1
-            for i in range(0, len(sublsts), 2):                     #n/2k + 1
-                if i * 2 + 1 > len(sublsts):                        #O(1)
-                    temp.append(sublsts[i])                         #O(1)
+        while len(sublsts) > 1:  # ciel(n/2k) + 1
+            for i in range(0, len(sublsts), 2):  # n/2k + 1
+                if len(sublsts) - 2 * len(temp) > 1:  # O(1)
+                    temp.append(merge(sublsts[i], sublsts[i + 1]))  # O(1)
                 else:
-                    temp.append(merge(sublsts[i], sublsts[i + 1]))  #O(1)
+                    temp.append(sublsts[i])  # O(1)
             sublsts = temp
             temp = []
-        return sublsts
-                                
+        return sublsts[0]
+
 
 def merge(L, R):
     newarray = []
     i = j = k = 0
     while i < len(L) and j < len(R):
         if L[i] <= R[j]:
-            newarray.append(L[i])  
+            newarray.append(L[i])  # append placeholder swap to k to use constant o(1)
             i += 1
         else:
             newarray.append(R[j])
@@ -100,20 +102,33 @@ def merge(L, R):
 
     return newarray
 
+
 def test(a):
     cProfile.run("mergesort(a)")
-    print("\nList:     ", a)
-    print("\nNew List: ", mergesort(a))
+    print(a)
+    print(mergesort(a))
+
+
+# -------------- Def. Mergesort ---------------
+def standard_mergesort(lst):
+    temp = []
+    for i, val in enumerate(lst):
+        temp.append([val])
+    lst = temp
+
+    temp = []
+    while len(lst) > 1:
+        print(" ")
+
+    return lst
+
 
 # --------------- Run/Test ---------------
-a = [randrange(10) for i in range(30)]
-# a = [0, 7, 3, 1, 3, 8, 1, 0, 8, 0]
-#a = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+a = [randrange(10) for i in range(10)]
 
 # print("* Bubble sort: ", bubble(a))
 # print("* Linear sort: ", asort(a))
 # print("* Binary sort: ", bsort(a))
 # print("* Merge sort (bsort): ", mergesort_bsort(a))
 
-print(test(a))
-
+test(a)
