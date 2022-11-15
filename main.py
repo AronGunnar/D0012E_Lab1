@@ -1,18 +1,17 @@
 from random import randrange
 import time
 
-start = time.time()
 # -------------- Bubble sort --------------
-def bubble(lst):
-    if len(lst) > 1:
-        for _ in range(len(lst)):
-            for i, val in enumerate(lst):
-                if i == len(lst) - 1:
-                    break
-                elif lst[i] > lst[i + 1]:
-                    lst[i] = lst[i + 1]
-                    lst[i + 1] = val
-    return lst
+#def bubble(lst):
+#    if len(lst) > 1:
+#        for _ in range(len(lst)):
+#            for i, val in enumerate(lst):
+#                if i == len(lst) - 1:
+#                    break
+#                elif lst[i] > lst[i + 1]:
+#                    lst[i] = lst[i + 1]
+#                    lst[i + 1] = val
+#    return lst
 
 
 # ----- Insertionsort (linear search) -----
@@ -57,13 +56,13 @@ def mergesort(lst):
     k = 4  # Max lenght of elements in sublists
     if len(lst) > 1:
         sublsts = [
-            lst[i * 4:(i + 1) * k]
-            for i in range((len(lst) + k - 1) // k)                 #O(1)
+            lst[i * k:(i + 1) * k]
+            for i in range((len(lst) + k - 1) // k)
         ]
 
-        for i in range(0, len(sublsts)):                            # O(n)
-            # asort(array[i])                                       # Uncomment to use linear sort
-            bsort(sublsts[i])                                       # O(log n)
+        for i in range(0, len(sublsts)):  # o(n)
+            #asort(sublsts[i])   # Uncomment to use linear sort
+            bsort(sublsts[i])
 
         temp = []
         while len(sublsts) > 1:
@@ -105,14 +104,22 @@ def merge(L, R):
 # --------------- Run/Test ---------------
 end = time.time()
 final_time = start - end
-a = [randrange(10) for i in range(10)]
+a = [randrange(10) for i in range(20)]
 # a = [0, 7, 3, 1, 3, 8, 1, 0, 8, 0]
+#a = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 
 print("\nList:          ", a)
 # print("* Bubble sort: ", bubble(a))
 # print("* Linear sort: ", asort(a))
 # print("* Binary sort: ", bsort(a))
 # print("* Merge sort (bsort): ", mergesort_bsort(a))
-print(mergesort(a))
 
+start = time.time()
+
+mergesort(a)
+
+end = time.time()
+final_time = end - start
+
+print(mergesort(a))
 print("execution time :", final_time)
