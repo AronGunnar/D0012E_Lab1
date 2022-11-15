@@ -1,6 +1,5 @@
 from random import randrange
 import cProfile
-import time
 
 
 # -------------- Bubble sort --------------
@@ -40,6 +39,7 @@ def bsort(lst):
     return lst
 
 
+# Insertionsort: Binary search
 def bsearch(value, lowerBound, upperBound, lst):
     while lowerBound <= upperBound:
         mid = (lowerBound + upperBound) // 2
@@ -57,14 +57,8 @@ def bsearch(value, lowerBound, upperBound, lst):
 def mergesort(lst):
     k = 4  # Max lenght of elements in sublists
     if len(lst) > 1:
-        sublsts = [
-            lst[i * k:(i + 1) * k]
-            for i in range((len(lst) + k - 1) // k)
-        ]
-
-        for i in range(0, len(sublsts)):  # o(n)
-            # asort(sublsts[i])   # Uncomment to use linear sort
-            bsort(sublsts[i])
+        # sublsts = k_elem_sublists(lst, k) # Uncomment for
+        sublsts = one_elem_sublists(lst)
 
         temp = []
         while len(sublsts) > 1:  # ciel(n/2k) + 1
@@ -78,6 +72,7 @@ def mergesort(lst):
         return sublsts[0]
 
 
+# Mergesort: Merge sublists
 def merge(L, R):
     newarray = []
     i = j = k = 0
@@ -103,22 +98,24 @@ def merge(L, R):
     return newarray
 
 
-def test(a):
-    cProfile.run("mergesort(a)")
-    print(a)
-    print(mergesort(a))
+# Mergesort: Divide into sublists (k or one)
+def k_elem_sublists(lst, k):
+    sublsts = [
+        lst[i * k:(i + 1) * k]
+        for i in range((len(lst) + k - 1) // k)
+    ]
+
+    for i in range(0, len(sublsts)):  # o(n)
+        # asort(sublsts[i])   # Uncomment to use linear sort
+        bsort(sublsts[i])
+    return sublsts
 
 
-# -------------- Def. Mergesort ---------------
-def standard_mergesort(lst):
+def one_elem_sublists(lst):
     temp = []
     for i, val in enumerate(lst):
         temp.append([val])
     lst = temp
-
-    temp = []
-    while len(lst) > 1:
-        print(" ")
 
     return lst
 
@@ -126,9 +123,11 @@ def standard_mergesort(lst):
 # --------------- Run/Test ---------------
 a = [randrange(10) for i in range(10)]
 
-# print("* Bubble sort: ", bubble(a))
-# print("* Linear sort: ", asort(a))
-# print("* Binary sort: ", bsort(a))
-# print("* Merge sort (bsort): ", mergesort_bsort(a))
+
+def test(a):
+    cProfile.run("mergesort(a)")
+    print(a)
+    print(mergesort(a))
+
 
 test(a)
