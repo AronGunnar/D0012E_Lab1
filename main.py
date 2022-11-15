@@ -102,8 +102,6 @@ def merge(L, R):
 
 
 # --------------- Run/Test ---------------
-end = time.time()
-final_time = start - end
 a = [randrange(10) for i in range(20)]
 # a = [0, 7, 3, 1, 3, 8, 1, 0, 8, 0]
 #a = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
