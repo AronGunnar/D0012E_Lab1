@@ -57,8 +57,8 @@ def bsearch(value, lowerBound, upperBound, lst):
 def mergesort(lst):
     k = 4  # Max lenght of elements in sublists
     if len(lst) > 1:
-        # sublsts = k_elem_sublists(lst, k) # Uncomment for
-        sublsts = one_elem_sublists(lst)
+        sublsts = k_elem_sublists(lst, k)  # Uncomment for
+        # sublsts = one_elem_sublists(lst)
 
         temp = []
         while len(sublsts) > 1:  # ciel(n/2k) + 1
@@ -123,12 +123,12 @@ def one_elem_sublists(lst):
 
 # --------------- Run/Test ---------------
 a = [randrange(10) for i in range(10)]
-# a = [0]
 
-def test(a):
+
+def test(lst):
     cProfile.run("mergesort(a)")
-    print(a)
-    print(mergesort(a))
+    print(lst)
+    print(mergesort(lst))
 
 
 test(a)
