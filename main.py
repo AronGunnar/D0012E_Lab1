@@ -61,8 +61,8 @@ def mergesort(lst):
         ]
 
         for i in range(0, len(sublsts)):  # o(n)
-            asort(sublsts[i])   # Uncomment to use linear sort
-            #bsort(sublsts[i])
+            #asort(sublsts[i])   # Uncomment to use linear sort
+            bsort(sublsts[i])
 
         temp = []
         while len(sublsts) > 1:
@@ -102,7 +102,7 @@ def merge(L, R):
 
 
 # --------------- Run/Test ---------------
-a = [randrange(10) for i in range(100000)]
+a = [randrange(10) for i in range(100)]
 # a = [0, 7, 3, 1, 3, 8, 1, 0, 8, 0]
 #a = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 
