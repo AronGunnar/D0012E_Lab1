@@ -67,7 +67,7 @@ def mergesort(lst):
         temp = []
         while len(sublsts) > 1:                                     #ciel(n/2k) + 1
             for i in range(0, len(sublsts), 2):                     #n/2k + 1
-                if i * 2 + 1 > len(sublsts):                        #O(1)
+                if i + 1 > len(sublsts):                        #O(1)
                     temp.append(sublsts[i])                         #O(1)
                 else:
                     temp.append(merge(sublsts[i], sublsts[i + 1]))  #O(1)
@@ -106,7 +106,7 @@ def test(a):
     print("\nNew List: ", mergesort(a))
 
 # --------------- Run/Test ---------------
-a = [randrange(10) for i in range(30)]
+a = [randrange(10) for i in range(40)]
 # a = [0, 7, 3, 1, 3, 8, 1, 0, 8, 0]
 #a = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 
