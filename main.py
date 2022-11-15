@@ -58,20 +58,20 @@ def mergesort(lst):
     if len(lst) > 1:
         sublsts = [
             lst[i * 4:(i + 1) * k]
-            for i in range((len(lst) + k - 1) // k)
+            for i in range((len(lst) + k - 1) // k)                 #O(1)
         ]
 
-        for i in range(0, len(sublsts)):  # o(n)
-            # asort(array[i])   # Uncomment to use linear sort
-            bsort(sublsts[i])
+        for i in range(0, len(sublsts)):                            # O(n)
+            # asort(array[i])                                       # Uncomment to use linear sort
+            bsort(sublsts[i])                                       # O(log n)
 
         temp = []
         while len(sublsts) > 1:
-            for i in range(0, len(sublsts), 2):
-                if i * 2 + 1 > len(sublsts):
-                    temp.append(sublsts[i])
+            for i in range(0, len(sublsts), 2):                     #O(n/2)       
+                if i * 2 + 1 > len(sublsts):                        #O(1)
+                    temp.append(sublsts[i])                         #O(n)
                 else:
-                    temp.append(merge(sublsts[i], sublsts[i + 1]))
+                    temp.append(merge(sublsts[i], sublsts[i + 1]))  #O(n)
             sublsts = temp
             temp = []
         return sublsts
@@ -105,7 +105,7 @@ def merge(L, R):
 # --------------- Run/Test ---------------
 end = time.time()
 final_time = start - end
-a = [randrange(10) for i in range(20)]
+a = [randrange(10) for i in range(10)]
 # a = [0, 7, 3, 1, 3, 8, 1, 0, 8, 0]
 
 print("\nList:          ", a)
