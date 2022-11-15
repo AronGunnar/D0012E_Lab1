@@ -70,6 +70,7 @@ def mergesort(lst):
             sublsts = temp
             temp = []
         return sublsts[0]
+    return lst
 
 
 # Mergesort: Merge sublists
@@ -122,7 +123,7 @@ def one_elem_sublists(lst):
 
 # --------------- Run/Test ---------------
 a = [randrange(10) for i in range(10)]
-
+# a = [0]
 
 def test(a):
     cProfile.run("mergesort(a)")
