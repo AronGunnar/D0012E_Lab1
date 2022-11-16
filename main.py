@@ -17,7 +17,7 @@ import cProfile
 
 # ----- Insertionsort (linear search) -----
 def asort(lst):
-    for j, val in enumerate(lst): #n-1
+    for j, val in enumerate(lst):  # n-1
         i = j - 1
         while i >= 0 and lst[i] > val:
             lst[i + 1] = lst[i]
@@ -25,7 +25,6 @@ def asort(lst):
         lst[i + 1] = val
     return lst
 
-asort([1,5,6,8,3,4,2,9,7])
 
 # ----- Insertionsort (binary search) -----
 def bsort(lst):
@@ -53,14 +52,51 @@ def bsearch(value, lowerBound, upperBound, lst):
             upperBound = mid - 1
     return lowerBound
 
-bsort([1,5,6,8,3,4,2,9,7])
 
 # -------------- Mergesort ---------------
-def mergesort(lst):
-    k = 4  # Max lenght of elements in sublists
+def mergesort_bsort(lst):
+    k = 10  # Max lenght of elements in sublists
     if len(lst) > 1:
-        sublsts = k_elem_sublists(lst, k)  # Uncomment for
+        sublsts = k_elem_sublists_bsort(lst, k)  # Uncomment for
         # sublsts = one_elem_sublists(lst)
+
+        temp = []
+        while len(sublsts) > 1:  # ciel(n/2k) + 1
+            for i in range(0, len(sublsts), 2):  # n/2k + 1
+                if len(sublsts) - 2 * len(temp) > 1:  # O(1)
+                    temp.append(merge(sublsts[i], sublsts[i + 1]))  # O(1)
+                else:
+                    temp.append(sublsts[i])  # O(1)
+            sublsts = temp
+            temp = []
+        return sublsts[0]
+    return lst
+
+
+def mergesort_asort(lst):
+    k = 10  # Max lenght of elements in sublists
+    if len(lst) > 1:
+        sublsts = k_elem_sublists_asort(lst, k)  # Uncomment for
+        # sublsts = one_elem_sublists(lst)
+
+        temp = []
+        while len(sublsts) > 1:  # ciel(n/2k) + 1
+            for i in range(0, len(sublsts), 2):  # n/2k + 1
+                if len(sublsts) - 2 * len(temp) > 1:  # O(1)
+                    temp.append(merge(sublsts[i], sublsts[i + 1]))  # O(1)
+                else:
+                    temp.append(sublsts[i])  # O(1)
+            sublsts = temp
+            temp = []
+        return sublsts[0]
+    return lst
+
+
+def mergesort(lst):
+    # k = 4  # Max lenght of elements in sublists
+    if len(lst) > 1:
+        # sublsts = k_elem_sublists(lst, k)  # Uncomment for
+        sublsts = one_elem_sublists(lst)
 
         temp = []
         while len(sublsts) > 1:  # ciel(n/2k) + 1
@@ -102,7 +138,7 @@ def merge(L, R):
 
 
 # Mergesort: Divide into sublists (k or one)
-def k_elem_sublists(lst, k):
+def k_elem_sublists_bsort(lst, k):
     sublsts = [
         lst[i * k:(i + 1) * k]
         for i in range((len(lst) + k - 1) // k)
@@ -111,6 +147,18 @@ def k_elem_sublists(lst, k):
     for i in range(0, len(sublsts)):  # o(n)
         # asort(sublsts[i])   # Uncomment to use linear sort
         bsort(sublsts[i])
+    return sublsts
+
+
+def k_elem_sublists_asort(lst, k):
+    sublsts = [
+        lst[i * k:(i + 1) * k]
+        for i in range((len(lst) + k - 1) // k)
+    ]
+
+    for i in range(0, len(sublsts)):  # o(n)
+        asort(sublsts[i])  # Uncomment to use linear sort
+        # bsort(sublsts[i])
     return sublsts
 
 
@@ -124,13 +172,25 @@ def one_elem_sublists(lst):
 
 
 # --------------- Run/Test ---------------
-a = [randrange(10) for i in range(10)]
-sorted_list = list(range(0,1000))
+a = [randrange(10) for i in range(10000)]
+sorted_list = list(range(0, 10000))
 revered_list = sorted_list.copy()
 revered_list.reverse()
-def test(lst):
-    cProfile.run("mergesort(a)")
-    print(lst)
-    print(mergesort(lst))
 
-test(a)
+
+def test(lst):
+    # cProfile.run("mergesort(a)")
+    # print(lst)
+    # print(mergesort(lst))
+    cProfile.run("mergesort_bsort(revered_list)")
+    # print(lst)
+    # print(mergesort_bsort(lst))
+    cProfile.run("mergesort_asort(revered_list)")
+
+
+# print(lst)
+# print(mergesort_asort(lst))
+# cProfile.run("asort(revered_list)")
+# cProfile.run("bsort(revered_list)")
+
+test(revered_list)
