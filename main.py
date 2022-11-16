@@ -214,12 +214,12 @@ test1(a)
     #cProfile.run("mergesort_bsort(revered_list, k)")
     # print(lst)
     # print(mergesort_bsort(lst))
-    #cProfile.run("mergesort_asort(revered_list, k)")
+    cProfile.run("mergesort_asort(revered_list)")
 
 
 # print(lst)
 # print(mergesort_asort(lst))
-# cProfile.run("asort(revered_list)")
-# cProfile.run("bsort(revered_list)")
+    #cProfile.run("asort(a)")
+    #cProfile.run("bsort(a)")
 
 #test(revered_list)
