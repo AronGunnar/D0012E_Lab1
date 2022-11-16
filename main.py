@@ -178,12 +178,12 @@ sorted_list = list(range(0, 10000))
 revered_list = sorted_list.copy()
 revered_list.reverse()
 
-def test1(lst):
+def test1():
+    inputsize = randrange(1000)
     besttime = 100
     k = 2
     temptime = 0
-    while k < len(lst)/2 - 1:
-
+    while k < len(inputsize)/2 - 1:
         for i in range(0,10,1): #sublists / elements in list, sublists > elements in list
             start_time = time.time()
             mergesort_bsort(lst,k)
@@ -214,7 +214,7 @@ test1(a)
     #cProfile.run("mergesort_bsort(revered_list, k)")
     # print(lst)
     # print(mergesort_bsort(lst))
-    cProfile.run("mergesort_asort(revered_list)")
+    #cProfile.run("mergesort_asort(revered_list)")
 
 
 # print(lst)
