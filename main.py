@@ -17,7 +17,7 @@ import cProfile
 
 # ----- Insertionsort (linear search) -----
 def asort(lst):
-    for j, val in enumerate(lst):
+    for j, val in enumerate(lst): #n-1
         i = j - 1
         while i >= 0 and lst[i] > val:
             lst[i + 1] = lst[i]
@@ -25,6 +25,7 @@ def asort(lst):
         lst[i + 1] = val
     return lst
 
+asort([1,5,6,8,3,4,2,9,7])
 
 # ----- Insertionsort (binary search) -----
 def bsort(lst):
@@ -52,6 +53,7 @@ def bsearch(value, lowerBound, upperBound, lst):
             upperBound = mid - 1
     return lowerBound
 
+bsort([1,5,6,8,3,4,2,9,7])
 
 # -------------- Mergesort ---------------
 def mergesort(lst):
@@ -123,12 +125,12 @@ def one_elem_sublists(lst):
 
 # --------------- Run/Test ---------------
 a = [randrange(10) for i in range(10)]
-
-
+sorted_list = list(range(0,1000))
+revered_list = sorted_list.copy()
+revered_list.reverse()
 def test(lst):
     cProfile.run("mergesort(a)")
     print(lst)
     print(mergesort(lst))
-
 
 test(a)
