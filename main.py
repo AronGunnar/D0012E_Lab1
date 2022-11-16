@@ -1,5 +1,6 @@
 from random import randrange
 import cProfile
+import time
 
 
 # -------------- Bubble sort --------------
@@ -54,8 +55,8 @@ def bsearch(value, lowerBound, upperBound, lst):
 
 
 # -------------- Mergesort ---------------
-def mergesort_bsort(lst):
-    k = 10  # Max lenght of elements in sublists
+def mergesort_bsort(lst, k):
+
     if len(lst) > 1:
         sublsts = k_elem_sublists_bsort(lst, k)  # Uncomment for
         # sublsts = one_elem_sublists(lst)
@@ -73,8 +74,8 @@ def mergesort_bsort(lst):
     return lst
 
 
-def mergesort_asort(lst):
-    k = 10  # Max lenght of elements in sublists
+def mergesort_asort(lst, k):
+
     if len(lst) > 1:
         sublsts = k_elem_sublists_asort(lst, k)  # Uncomment for
         # sublsts = one_elem_sublists(lst)
@@ -172,20 +173,48 @@ def one_elem_sublists(lst):
 
 
 # --------------- Run/Test ---------------
-a = [randrange(10) for i in range(10000)]
+a = [randrange(10) for i in range(1000)]
 sorted_list = list(range(0, 10000))
 revered_list = sorted_list.copy()
 revered_list.reverse()
 
+def test1(lst):
+    besttime = 100
+    k = 2
+    temptime = 0
+    while k < len(lst)/2 - 1:
 
-def test(lst):
+        for i in range(0,10,1): #sublists / elements in list, sublists > elements in list
+            start_time = time.time()
+            mergesort_bsort(lst,k)
+            endtime = time.time()
+
+            tempk = k
+            temptime += endtime - start_time
+
+        temptime /= 10
+        if temptime < besttime and not temptime == besttime:
+                besttime = temptime
+                print("\n Median Time: " , besttime, "K :", k)
+
+        k += 1
+        
+    print("\n Time: " , besttime, "K :", k)
+
+
+
+test1(a)
+
+#def test(lst):
+
+
     # cProfile.run("mergesort(a)")
     # print(lst)
     # print(mergesort(lst))
-    cProfile.run("mergesort_bsort(revered_list)")
+    #cProfile.run("mergesort_bsort(revered_list, k)")
     # print(lst)
     # print(mergesort_bsort(lst))
-    cProfile.run("mergesort_asort(revered_list)")
+    #cProfile.run("mergesort_asort(revered_list, k)")
 
 
 # print(lst)
@@ -193,4 +222,4 @@ def test(lst):
 # cProfile.run("asort(revered_list)")
 # cProfile.run("bsort(revered_list)")
 
-test(revered_list)
+#test(revered_list)
