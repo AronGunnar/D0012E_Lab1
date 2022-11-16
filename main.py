@@ -55,7 +55,7 @@ def bsearch(value, lowerBound, upperBound, lst):
 
 # -------------- Mergesort ---------------
 def mergesort_bsort(lst):
-    k = 10  # Max lenght of elements in sublists
+    k = 1000  # Max lenght of elements in sublists
     if len(lst) > 1:
         sublsts = k_elem_sublists_bsort(lst, k)  # Uncomment for
         # sublsts = one_elem_sublists(lst)
@@ -74,7 +74,7 @@ def mergesort_bsort(lst):
 
 
 def mergesort_asort(lst):
-    k = 10  # Max lenght of elements in sublists
+    k = 1000  # Max lenght of elements in sublists
     if len(lst) > 1:
         sublsts = k_elem_sublists_asort(lst, k)  # Uncomment for
         # sublsts = one_elem_sublists(lst)
@@ -172,25 +172,25 @@ def one_elem_sublists(lst):
 
 
 # --------------- Run/Test ---------------
-a = [randrange(10) for i in range(10000)]
+a = [randrange(10) for i in range(100000)]
 sorted_list = list(range(0, 10000))
 revered_list = sorted_list.copy()
 revered_list.reverse()
 
 
 def test(lst):
-    # cProfile.run("mergesort(a)")
+     #cProfile.run("mergesort(a)")
     # print(lst)
     # print(mergesort(lst))
-    cProfile.run("mergesort_bsort(revered_list)")
+     cProfile.run("mergesort_bsort(a)")
     # print(lst)
     # print(mergesort_bsort(lst))
-    cProfile.run("mergesort_asort(revered_list)")
+     cProfile.run("mergesort_asort(a)")
 
 
 # print(lst)
 # print(mergesort_asort(lst))
-# cProfile.run("asort(revered_list)")
-# cProfile.run("bsort(revered_list)")
+    #cProfile.run("asort(a)")
+    #cProfile.run("bsort(a)")
 
 test(revered_list)
