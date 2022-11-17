@@ -163,8 +163,49 @@ def test1(length):
     print("Best time: ", besttime, "| Best k :", best_k)
 
 
-test1(len(a))
+def test2():
+    k_values = []
+    runtime = []
+    besttime = 100
+    temptime = 0
+    k = 90
+    length = 2000
 
+    accuracy = 5  # Amount of random lists tested
+
+    while not length == 50000:
+        for i in range(accuracy):
+            lst = [randrange(10) for i in range(length)]
+
+            start_time = time.time()
+            mergesort(lst, k)
+            endtime = time.time()
+            temptime += endtime - start_time
+
+            temptime /= accuracy
+            if temptime < besttime:
+                besttime = temptime
+
+        with open('data.txt.txt', 'a') as f:
+            f.write(str(besttime))
+            f.write('\n')
+
+        length += 2000
+        besttime = 100
+
+    with open('data.txt.txt', 'a') as f:
+        f.write('\n')
+
+    with open(r'data.txt.txt', 'r') as file:
+        data = file.read()
+        data = data.replace(".", ",")
+
+    with open(r'data.txt.txt', 'w') as file:
+        file.write(data)
+
+
+# test1(len(a))
+test2()
 
 # cProfile.run("mergesort(a)")
 # print(lst)
